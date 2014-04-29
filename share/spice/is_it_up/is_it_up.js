@@ -16,9 +16,7 @@
             meta: {
                 sourceUrl: 'http://isitup.org/' + api_result['domain'],
                 sourceName: 'Is it up?',
-                sourceIcon: true
             },
-            template_group: 'info',
             templates: {
                 group: 'info',
                 options: {
