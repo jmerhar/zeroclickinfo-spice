@@ -4,7 +4,7 @@
     env.ddg_spice_in_theaters = function(api_result) {
 
         if(api_result.error) {
-            return;
+            return Spice.error('in_theaters');
         }
 
         Spice.add({
@@ -14,7 +14,6 @@
             meta: {
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
-                total: api_result.movies,
                 itemType: 'Movies'
             },
             normalize: function(item) {
@@ -24,12 +23,13 @@
                 };
             },
             templates: {
+                group: 'info',
                 item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail
+                options: {
+                    content: Spice.in_theaters.in_theaters_detail
+                }
             }
         });
-
-        Spice.getDOM('in_theaters').find('.tile__body').addClass('is_hidden');
     }
 
     // Convert minutes to hr. min. format.
