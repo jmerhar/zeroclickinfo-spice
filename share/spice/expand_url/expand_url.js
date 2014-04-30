@@ -16,7 +16,7 @@
             name: "Expand URL",
             data: api_response,
             meta: {
-                sourceUrl: "http://longurl.org/expand?url=" + encodeURIComponent(query),
+                sourceUrl: "http://longurl.org/expand?url=" + api_response["long-url"],
                 sourceName: "LongURL"
             },
             templates: {
