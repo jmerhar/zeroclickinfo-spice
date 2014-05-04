@@ -82,3 +82,14 @@ div.tile__body.is_hidden {
     width: 16px;
     height: 16px;
 }
+
+.zci--in_theaters .movie--ratings {
+    padding: 0.5em 0 0.5em 0.7em;
+}
+
+.zci--in_theaters .movie--freshness {
+    display: inline;
+    position: relative;
+    top: -2px;
+    margin-left: 4px;
+}
