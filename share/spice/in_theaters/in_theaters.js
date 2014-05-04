@@ -25,11 +25,13 @@
                 };
             },
             templates: {
-		item: 'basic_image_item',
+		group: 'products_simple',
                 detail: Spice.in_theaters.detail,
 		options: {
 		    footer: Spice.in_theaters.footer
-		}
+		},
+		item_detail: false,
+		wrap_detail: false
             }
         });
 
