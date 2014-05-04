@@ -25,8 +25,11 @@
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail
+		item: 'basic_image_item',
+                detail: Spice.in_theaters.detail,
+		options: {
+		    footer: Spice.in_theaters.footer
+		}
             }
         });
 
