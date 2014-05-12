@@ -20,12 +20,10 @@
         }
 
         var state = api_result.results[0].state_name,
-         chamber = api_result.results[0].chamber;
+        chamber = api_result.results[0].chamber;
 
         var itemType;  
 
-        // sort by district for House members
-        // TODO: Use sorting block
         if(chamber == 'house') {
             results = sortDistrict(results);
             itemType =  'U.S. ' + DDG.capitalize(chamber) + ' Representatives from ' + state;

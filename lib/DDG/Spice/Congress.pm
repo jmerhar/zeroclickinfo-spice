@@ -140,7 +140,7 @@ handle query_lc => sub {
     );
 
     # Matches against special variable `$_`, which contains query
-    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
+    my ($token1, $chamber, $token2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
     
     $chamber = $chambers{$chamber};
 
@@ -156,39 +156,43 @@ handle query_lc => sub {
 
     # case 1. If we don't have anything in the state variables
     # : locate by latitude longitude no other terms are needed
-    if($chamber && !$state1 && !$state2){
+    if($chamber && !$token1 && !$token2){
         return 'legislators/locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude, {is_cached => 0} ;
     }
 
     my ($state);
     my ($zip);
 
+    # Change the name from state to something that makes more sense, 
+    # calling zip = state sounds dumb. 
     # Regex returns a space after $1, so we must remove it before hashing
-    $state1 = rtrim($state1);
+    $token1 = rtrim($token1);
 
     #trim off "from" for search terms "from state"
-    $state1 =~ s/from\s//;
-    $state2 =~ s/from\s//;
+    $token1 =~ s/from\s//;
+    $token2 =~ s/from\s//;
 
-    if (exists $states{$state1}) {
-        $state = $states{$state1};
-    } elsif (exists $states{$state2}) {
-        $state = $states{$state2};
+    if (exists $states{$token1}) {
+        $state = $states{$token1};
+    } elsif (exists $states{$token2}) {
+        $state = $states{$token2};
     }
     # check to see if we got something that looks like a zip
-    else{
-        $zip = $state1;
-        if($zip = m/(\W|^)\d{5}(\W|^)/){
-            $zip = $state1;
-        }
-        else{
-            $zip = $state2;
-            if($zip = m/(\W|\s)\d{5}(\W|$)/){
-                $zip = $state2;
-            }
+
+    else {
+        my $match;
+        if($match = m/(\W|^)\d{5}(\W|^)/){
+            $zip = $token1; 
+        } 
+        if($match = m/(\W|\s)\d{5}(\W|$)/){
+            $zip = $token2;
         }
     }
  
+    
+    #maybe fall back here to a location search or check 
+    # for phrases like "my sentor"
+
     # check to see if we only got the search term "house"
     # this IA probably isn't relevant in this case so return
     if($chamber eq "house" && !$state && !$zip){
