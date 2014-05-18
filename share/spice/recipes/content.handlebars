@@ -1,0 +1,24 @@
+{{#if ingredientDetails}}
+  <div class="detail__ingredients">
+    Ingredients: 
+    <ul>
+      {{#ingredientDetails}}
+        <li><a href="{{url}}">{{displayName}}</a></li>
+      {{/ingredientDetails}}
+    </ul>
+  </div>
+{{/if}}
+{{#if flavors}}
+  <div class="detail__flavors">
+    <ul>
+      {{#flavors}}
+        <li>
+          <a class="detail__flavors__name" href="{{url}}">{{name}}</a>
+          <div class="detail__flavors__strength">
+            <span style="width:{{strength}}%;"></span>
+          </div>
+        </li>
+      {{/flavors}}
+    </ul>
+  </div>
+{{/if}}

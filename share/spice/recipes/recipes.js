@@ -18,9 +18,11 @@ function ddg_spice_recipes(res) {
             /* item */
 
             m.title = item.recipeName.replace(/ recipe/i,"");
+	    m.heading = m.title;
             m.url = "http://www.yummly.com/recipe/" + item.id;
 
             m.image = item.imageUrlsBySize['250'];
+	    m.img_m = m.image;
             m.ratingText = item.sourceDisplayName;
 
             /* detail */
@@ -156,15 +158,16 @@ function ddg_spice_recipes(res) {
         },
         */
 
-        template_group: 'products_simple',
-
         templates: {
-            detail: Spice.recipes.recipes_detail,
-            item_detail: Spice.recipes.recipes_detail,
+	    group: 'media',
+            detail: 'products_item_detail',
 
             options: {
                 brand: true,
-                rating: true
+                rating: true,
+		content: Spice.recipes.content,
+		buy: Spice.recipes.buy,
+		subtitle_content: Spice.recipes.recipes_detail
             }
         }
 
