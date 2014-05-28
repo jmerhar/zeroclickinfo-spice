@@ -10,10 +10,10 @@
             id: "booking",
             name: "Booking",
             data: api_result,
-            meta: {
-                sourceName: "booking.com",
-                sourceUrl: 'http://www.booking.com/hotel/' + api_result.cc1 + '/' + api_result.pagename + '.html'
-            },
+//            meta: {
+//                sourceName: "booking.com",
+//                sourceUrl: 'http://www.booking.com/hotel/' + api_result.country + '/' + api_result.pagename + '.html'
+//            },
             templates: {
                 group: 'base',
                 options: {
