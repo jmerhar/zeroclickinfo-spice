@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "booking",
-            name: "Booking",
+            name: "Hotels",
             data: api_result,
 //            meta: {
 //                sourceName: "booking.com",
