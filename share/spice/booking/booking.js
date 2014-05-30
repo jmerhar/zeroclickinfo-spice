@@ -1,3 +1,12 @@
+Handlebars.registerHelper('substr', function(length, context, options) {
+ if ( context.length > length ) {
+  return context.substring(0, length) + "...";
+ } else {
+  return context;
+ }
+});
+
+
 (function (env) {
     "use strict";
     env.ddg_spice_booking = function(api_result){
@@ -24,3 +33,5 @@
         });
     };
 }(this));
+
+
